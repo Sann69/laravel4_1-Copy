@@ -15,9 +15,9 @@
         <h2 class="d-inline-block fw-semibold">List Product</h2>
 
         <div class="d-inline-block float-end ">
-            <a href="{{ route('profile.userProfile', ['id' => 1]) }}" class="btn btn-primary fw-semibold">Lihat
+            <a href="{{ route('profileMerchant.userProfile', ['id' => 2]) }}" class="btn btn-primary fw-semibold">Lihat
                 Profil</a>
-            <a href="{{ route('products.create') }}" class="btn btn-dark fw-semibold">Tambah Produk</a>
+            <a href="{{ route('products.createMerchant') }}" class="btn btn-dark fw-semibold">Tambah Produk</a>
             <a href="{{ route('products.index') }}" class="btn btn-secondary fw-semibold">Kembali ke
                 Produk</a>
         </div>

@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Controller;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -26,7 +27,8 @@ Route::get('/products/create', [Controller::class, 'create'])->name('products.cr
 
 Route::post('/products', [Controller::class, 'store'])->name('products.store');
 
-Route::get('/products/list', [Controller::class, 'list'])->name('products.list');
+//
+Route::get('/products/list/{id}', [Controller::class, 'list'])->name('products.list');
 
 Route::get('/products/index', [Controller::class, 'showProducts'])->name('products.index');
 
@@ -36,5 +38,18 @@ Route::put('/products/{product}', [Controller::class, 'update'])->name('products
 
 Route::delete('/products/{product}', [Controller::class, 'destroy'])->name('products.destroy');
 
+Route::get('/products/profile', [Controller::class, 'profile'])->name('products.profile');
 
+//memasukan data profile ke database
+Route::get('/profile/createUserProfile', [UserController::class, 'createUserProfile'])->name('profile.createUserProfile');
+
+Route::get('/profile/{id}', [UserController::class, 'userProfile'])->name('profile.userProfile');
+
+Route::get('/products/listmerchant/{id}', [Controller::class, 'listMerchant'])->name('products.listmerchant');
+
+Route::get('/profileMerchant/{id}', [UserController::class, 'userProfileMerchant'])->name('profileMerchant.userProfile');
+
+Route::get('/productsMerchant/create', [Controller::class, 'createMerchant'])->name('products.createMerchant');
+
+Route::post('/productsMerchant', [Controller::class, 'storeMerchant'])->name('products.storeMerchant');
 

@@ -8,10 +8,6 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <style>
-        .btn-primary {
-            width: 100%;
-        }
-
         .card-title {
             display: inline-block;
             font-weight: bolder;
@@ -93,7 +89,9 @@
             <h2 class="product-h2-line">_____</h2>
 
             <div class="container my-2">
-                <a href="{{ route('products.list') }}" class="btn btn-dark">Ke Halaman Admin</a>
+                <a href="{{ route('products.list', ['id' => 1]) }}" class="btn btn-primary fw-bold">Ke Halaman Admin</a>
+                <a href="{{ route('products.listmerchant', ['id' => 2]) }}"
+                    class="btn btn-success fw-bold float-end">Halaman Pengguna Merchant</a>
             </div>
 
             <div class="row row-cols-1 row-cols-md-4">
@@ -108,13 +106,13 @@
                                 @else
                                     <p class="kondisi bekas">Bekas</p>
                                 @endif
-                                <br><br>
+                                <br><br><br><br>
                                 <p class="stok">{{ number_format($product->stok, 0, ',', '.') }}</p>
                                 <p class="harga">Rp.{{ number_format($product->harga, 0, ',', '.') }}</p>
                                 <p class="berat">{{ number_format($product->berat, 0, ',', '.') }} gr</p>
                                 <br><br>
                                 <p class="card-text">{{ $product->deskripsi }}</p>
-                                <button type="button" class="btn btn-primary">Pesan Sekarang</button>
+                                <button type="button" class="btn btn-primary w-100">Pesan Sekarang</button>
                             </div>
                         </div>
                     </div>
