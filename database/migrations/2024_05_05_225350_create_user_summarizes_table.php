@@ -4,32 +4,34 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-use function Laravel\Prompts\table;
-
-return new class extends Migration
+class CreateUserSummarizesTable extends Migration
 {
     /**
      * Run the migrations.
+     *
+     * @return void
      */
-    public function up(): void
+    public function up()
     {
-        Schema::create('profiles', function (Blueprint $table) {
+        Schema::create('user_summarizes', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('user_id');
             $table->string('nama_toko');
-            $table->integer('rate');
+            $table->enum('rate', [1,2,3,4,5]);
             $table->string('produk_terbaik');
             $table->text('deskripsi');
-            $table->unsignedBigInteger('user_id');
-            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->timestamps();
+            $table->foreign('user_id')->references('id')->on('users');
         });
     }
 
     /**
      * Reverse the migrations.
+     *
+     * @return void
      */
-    public function down(): void
+    public function down()
     {
-        Schema::dropIfExists('profiles');
+        Schema::dropIfExists('user_summarizes');
     }
-};
+}

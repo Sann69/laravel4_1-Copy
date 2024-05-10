@@ -1,55 +1,32 @@
 <?php
 
-use App\Http\Controllers\Controller;
+use App\Http\Controllers\PostController;
 use App\Http\Controllers\UserController;
+use Illuminate\Support\Facades\Request;
 use Illuminate\Support\Facades\Route;
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider and all of them will
-| be assigned to the "web" middleware group. Make something great!
-|
-*/
+//proses tambah produk
+Route::post('/{user}/post-request', [UserController::class, 'postRequest'])->name('postRequest');
 
-// Route::get('/', function () {
-//     return view('welcome');
-// });
+//form tambah produk
+Route::get('/{user}/tambah-product', [UserController::class, 'handleRequest'])->name('form_product');
 
-//Route::get('/index', [Controller::class, 'index']);
+//tampil all produk
+Route::get('/products', [UserController::class, 'getProduct'])->name('get_product');
 
-Route::get('/products', [Controller::class, 'showProducts']);
+//form edit produk
+Route::get('/{user}/product/{product}', [UserController::class, 'editProduct'])->name('edit_product');
 
-Route::get('/products/create', [Controller::class, 'create'])->name('products.create');
+//proses edit produk
+Route::put('/{user}/product/{product}/update', [UserController::class, 'updateProduct'])->name('update_product');
 
-Route::post('/products', [Controller::class, 'store'])->name('products.store');
+//delete produk
+Route::post('/{user}/product/{product}/delete', [UserController::class, 'deleteProduct'])->name('delete_product');
 
-//
-Route::get('/products/list/{id}', [Controller::class, 'list'])->name('products.list');
+//hal profile
+Route::get('/profile/{user}', [UserController::class, 'getProfile'])->name('get_profile');
 
-Route::get('/products/index', [Controller::class, 'showProducts'])->name('products.index');
+//hal admin
+Route::get('/admin/{user}/list-products', [UserController::class, 'getAdmin'])->name('admin_page');
 
-Route::get('/products/{product}/edit', [Controller::class, 'edit'])->name('products.edit');
-
-Route::put('/products/{product}', [Controller::class, 'update'])->name('products.update');
-
-Route::delete('/products/{product}', [Controller::class, 'destroy'])->name('products.destroy');
-
-Route::get('/products/profile', [Controller::class, 'profile'])->name('products.profile');
-
-//memasukan data profile ke database
-Route::get('/profile/createUserProfile', [UserController::class, 'createUserProfile'])->name('profile.createUserProfile');
-
-Route::get('/profile/{id}', [UserController::class, 'userProfile'])->name('profile.userProfile');
-
-Route::get('/products/listmerchant/{id}', [Controller::class, 'listMerchant'])->name('products.listmerchant');
-
-Route::get('/profileMerchant/{id}', [UserController::class, 'userProfileMerchant'])->name('profileMerchant.userProfile');
-
-Route::get('/productsMerchant/create', [Controller::class, 'createMerchant'])->name('products.createMerchant');
-
-Route::post('/productsMerchant', [Controller::class, 'storeMerchant'])->name('products.storeMerchant');
-
+// Route::post('/posts/{post}/delete', [PostController::class, 'delete']);
